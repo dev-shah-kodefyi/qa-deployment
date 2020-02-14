@@ -11,7 +11,10 @@ node {
  dir(project_path) {
  
  stage('create artifact folder to store artifact'){
-    sh label: '',script rm -rf warstorage,script: "mkdir warstorage"
+    sh label: '',script rm -rf warstorage
+    {
+    script: "mkdir warstorage"
+    }
     }
     
  stage(' Jar download'){
