@@ -20,7 +20,7 @@ node {
     "files": [
     {
       "pattern": "userproject/*.war",
-      "target": "/root/.jenkins/workspace/QA/quality-assurance/warstorage/"
+      "target": "/root/.jenkins/workspace/qa-pipeline/quality-assurance/warstorage/"
       
     }
     ]
