@@ -1,0 +1,57 @@
+node {
+ try  {
+ notify('Job Started') 
+ 
+ stage('Git-Checkout') {
+   git 'https://github.com/devops311/qa-deployment.git'
+  }
+    
+ def project_path="quality-assurence"
+ 
+ dir(project_path) {
+ 
+ stage('create artifact folder to store artifact'){
+    sh label: '', script: "mkdir warstorage"
+    }
+    
+ stage(' Jar download'){
+    def server= Artifactory.server 'Artifactory'
+    def downloadSpec = """{
+    "files": [
+    {
+      "pattern": "userproject/*.war",
+      "target": "/root/.jenkins/workspace/QA/quality-assurance/warstorage/"
+      
+    }
+    ]
+    }"""
+    server.download(downloadSpec)
+   
+}
+   stage('Docker-Stage-Deployment') {
+   sh label: '', script: 'docker-compose up -d --build'
+  }
+  
+  stage ('Deploy approval'){
+	input "Deploy to production ?"
+	} 
+ }
+
+
+notify('Job Completed')   
+} catch (err) {
+  notify("Error ${err}")
+  currentBuild.result = 'FAILURE'
+}
+}
+
+
+
+def notify(status){
+    emailext (
+	to: "devashishkumar311@gmail.com",
+	subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+	 body: """<p>${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+	<p>Check console output at <a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>""",
+		)
+	}
