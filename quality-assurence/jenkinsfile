@@ -10,12 +10,12 @@ node {
  
  dir(project_path) {
  
- stage('create artifact folder to store artifact'){
+ stage('Creating a folder to store artifacts'){
     sh label: '',script: "mkdir -p warstorage"
     
     }
     
- stage(' Jar download'){
+ stage(' Downloading Jar From Artifactory Locally'){
     def server= Artifactory.server 'Artifactory'
     def downloadSpec = """{
     "files": [
@@ -37,7 +37,7 @@ node {
  
 
   
-  stage ('Deploy approval'){
+  stage ('Final Deployment Approval'){
 	input "Deploy to production ?"
 	} 
  }
