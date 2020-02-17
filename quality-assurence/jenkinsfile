@@ -34,7 +34,7 @@ node {
   }
   
   
-  stage('Docker image push to dockerhub'){
+  stage('Pushing to dockerhub'){
     
      script {
         
