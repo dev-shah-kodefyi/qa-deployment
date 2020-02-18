@@ -36,7 +36,14 @@ node {
   }
   
   
- 
+  stage('Docker image push to dockerhub'){
+   script {
+   docker.withRegistry( '', 'registryCredential') {
+      sh 'docker push quality-assurence_userproject:$BUILD_NUMBER'
+    }
+   }
+  }
+  
 
   
   stage ('Final Deployment Approval'){
