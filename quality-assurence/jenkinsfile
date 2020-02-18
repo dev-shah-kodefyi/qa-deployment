@@ -1,6 +1,8 @@
 node {
  try  {
  notify('Job Started') 
+  registry = " devops311/userproject"
+    registryCredential = 'dockerhubid'
  
  stage('Git-Checkout') {
    git 'https://github.com/devops311/qa-deployment.git'
