@@ -1,7 +1,7 @@
 node {
  try  {
  notify('Job Started') 
-  registry = ""
+  registry = "devops311/userproject"
     registryCredential = 'dockerhubid'
  
  stage('Git-Checkout') {
