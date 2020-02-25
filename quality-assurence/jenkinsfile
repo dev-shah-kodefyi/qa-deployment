@@ -40,8 +40,8 @@ node {
    
    
      docker.withRegistry( '', registryCredential ) {
-         
-        sh 'docker push $registry'
+         sh 'docker tag quality-assurence_userproject devops311/userproject'
+        sh 'docker push devops311/userproject'
          
    }
   }
