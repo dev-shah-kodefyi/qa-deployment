@@ -17,7 +17,7 @@ node {
     
     }
     
- stage(' Downloading Jar From Artifactory Locally'){
+ stage(' Downloading Artifacts Locally'){
     def server= Artifactory.server 'Artifactory'
     def downloadSpec = """{
     "files": [
