@@ -3,6 +3,7 @@ version: '2'
 
 services:
   userproject:
+    image:quality-assurence_userproject
     build: . 
     ports:
       - '30084:8080'
