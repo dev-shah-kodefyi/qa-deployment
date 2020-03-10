@@ -4,7 +4,7 @@ node {
   registry = "devops311/userproject"
     registryCredential = 'dockerhubid'
  
- stage('Git-Checkout') {
+ stage('Git-CheckOut') {
    git 'https://github.com/devops311/qa-deployment.git'
   }
     
